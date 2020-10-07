@@ -31,8 +31,8 @@ class Test {
 		//evenOddFromList();
 //		removingDuplicatesFromString();
 	//	removingDuplicatesFromStringWithoutSet();
-	//	sumOfIntegersInString();
-		checkPalindrome();
+		sumOfIntegersInString();
+	//	checkPalindrome();
 	}
 
 	

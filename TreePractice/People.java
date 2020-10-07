@@ -1,4 +1,4 @@
-package practice;
+package TreePractice;
 
 public class People implements Comparable<People> {
 	

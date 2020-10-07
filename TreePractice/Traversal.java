@@ -1,25 +1,25 @@
-package practice;
+package TreePractice;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-public class Solution {
+public class Traversal {
 
 	public static void main(String[] args) {
-		TreeNode tn = new TreeNode(1);
-		tn.right = new TreeNode(2);
-		tn.right.left = new TreeNode(3);
+		BinaryTreeNode tn = new BinaryTreeNode(1);
+		tn.right = new BinaryTreeNode(2);
+		tn.right.left = new BinaryTreeNode(3);
 	
-		System.out.println(new Solution().preorderTraversal(tn));
-		System.out.println(new Solution().preorderTraversalRecursive(tn));
+		System.out.println(new Traversal().preorderTraversal(tn));
+		System.out.println(new Traversal().preorderTraversalRecursive(tn));
 	}
 
 	
-	public List<Integer> preorderTraversal(TreeNode node) {
+	public List<Integer> preorderTraversal(BinaryTreeNode node) {
 		List<Integer> list = new LinkedList<Integer>();
-		Stack<TreeNode> rights = new Stack<TreeNode>();
+		Stack<BinaryTreeNode> rights = new Stack<BinaryTreeNode>();
 		while(node != null) {
 			list.add(node.val);
 			if (node.right != null) {
@@ -34,11 +34,11 @@ public class Solution {
 	}
 			
 	
-	public List<Integer> inOrderTraversal(TreeNode root) {
+	public List<Integer> inOrderTraversal(BinaryTreeNode root) {
 		List<Integer> list = new LinkedList<Integer>();
-		Stack<TreeNode> stack = new Stack<TreeNode>();
+		Stack<BinaryTreeNode> stack = new Stack<BinaryTreeNode>();
 			
-		TreeNode cur = root;
+		BinaryTreeNode cur = root;
 		
 		while(root != null) {
 		//	root = root.left;
@@ -59,7 +59,7 @@ public class Solution {
 	}
 		
 	
-	public List<Integer> preorderTraversalRecursive(TreeNode node) {
+	public List<Integer> preorderTraversalRecursive(BinaryTreeNode node) {
 		List<Integer> list = new LinkedList<Integer>();
 		list.add(node.val);
 		if(node.left ==null && node.right==null){
