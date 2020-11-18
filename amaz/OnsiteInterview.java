@@ -12,9 +12,9 @@ public class OnsiteInterview {
 
 	//	anagram();
 		//	printFormatted("MI_is_one_of_the_best_place_to_work__It_is_nice__It_is_fun_");
-	//	printFormattedMultipleUnderscore("MI_is_one_of_the_best_place_to_work____It_is_nice__It_is_fun__I_am_working_there_");
+		printFormattedMultipleUnderscore("MI_is_one_of_the_best_place_to_work____It_is_nice__It_is_fun__I_am_working_there_");
 
-		summingIntegersInString("a12cfgh345a1a");
+	//	summingIntegersInString("a12cfgh345a1a");
 	}
 
 	private static void summingIntegersInString(String s) {
