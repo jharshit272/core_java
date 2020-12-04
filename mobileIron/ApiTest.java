@@ -86,7 +86,7 @@ class BaseClass{
 		}
 		
 		@Test (dataProvider = "getOrderId")
-		public void testPerformanceConcurrent() {
+		public void testPerformanceConcurrent(Order order) {
 				Order order = new Order();
 				Response res = given().body(order)
 						.when().post("/create");
@@ -103,6 +103,7 @@ class BaseClass{
 				obj[i] = new Order();
 			}
 			
+			return obj;
 			//parallel should also be defined as keyword in TestNg file / maven sure fire plugin
 		}
 
