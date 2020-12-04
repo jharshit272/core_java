@@ -3,18 +3,82 @@ package amaz;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OnsiteInterview {
 
 	public static void main(String[] args) {
 
-	//	anagram();
+		//	anagram();
 		//	printFormatted("MI_is_one_of_the_best_place_to_work__It_is_nice__It_is_fun_");
-		printFormattedMultipleUnderscore("MI_is_one_of_the_best_place_to_work____It_is_nice__It_is_fun__I_am_working_there_");
+		//	printFormattedMultipleUnderscore("MI_is_one_of_the_best_place_to_work____It_is_nice__It_is_fun__I_am_working_there_");
+		//	summingIntegersInString("a12cfgh345a1a");
+		findingPairThatSumToFive("a12cfg14ha1a3cd12qw4");
+	//	findingPairThatSumToFiveInArray();
+	}
 
-	//	summingIntegersInString("a12cfgh345a1a");
+	private static void findingPairThatSumToFiveInArray() {
+		
+		int a[] = {1,2,12,7,8,14,3,4,1,3};
+		
+		int gs=15;
+		System.out.println("-------------O(n^2)----------------");
+		
+		for (int i = 0; i < a.length; i++) {
+			for (int j = i+1; j < a.length; j++) {
+				if(gs-a[j]==a[i]) {
+					System.out.println(a[i]+" "+a[j]);
+					break;
+				}
+			}
+		}
+		
+		System.out.println("-----------------------------");
+		
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for (int i = 0; i < a.length; i++) {
+				if(map.containsKey(gs-a[i])) {
+					if(map.get(gs-a[i])>0) {
+						System.out.println(a[i]+" "+(gs-a[i]));	
+						map.put(gs-a[i], map.getOrDefault(gs-a[i], 1)-1);
+						map.put(gs-a[i], map.getOrDefault(gs-a[i], 1)-1);
+					}
+				}else  {
+					map.put(a[i], map.getOrDefault(a[i], 0)+1);
+			}
+		}
+		
+	}
+
+	private static void findingPairThatSumToFive(String s) {
+
+		//output = 2,3;1,4
+	//	ArrayList<Integer> map = new ArrayList<Integer>(); 
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(); 
+
+		for (int i = 0; i < s.length(); i++) {
+			StringBuffer n = new StringBuffer();
+			while(i < s.length() && Character.isDigit(s.charAt(i))){				
+				n.append(s.charAt(i));
+				i++;
+
+			}
+			if(!n.toString().isEmpty()) {
+				map.put(Integer.valueOf(n.toString()), 
+						map.getOrDefault(Integer.valueOf(n.toString()), 0)+1);
+			}
+		}
+
+		for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+			if(map.containsKey(15 - entry.getKey())) {
+				System.out.println(entry.getKey()+" "+(15 - entry.getKey()));
+			}
+		}
+		System.out.println(map);
+
 	}
 
 	private static void summingIntegersInString(String s) {
@@ -22,9 +86,7 @@ public class OnsiteInterview {
 		int sum = 0;
 		StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < s.length(); i++) {
-			if(!Character.isDigit(s.charAt(i))) {
-				//do nothing
-			}else {
+			if(Character.isDigit(s.charAt(i))) {
 				//ifNumber
 				while(i < s.length() && Character.isDigit(s.charAt(i))){
 					sb.append(s.charAt(i));
