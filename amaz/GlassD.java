@@ -15,8 +15,8 @@ public class GlassD {
 		//	pick2LetterUniqueAlpha();
 		//	System.out.println(firstOccurrenceNonRepeatingCharacterInString());
 		//	reverseTheArrayOfChar();  
-		notSortedThirdLargestValue();
-		secondLargestValue();
+	//	notSortedThirdLargestValue();
+	//	secondLargestValue();
 		//mergeSortedArray();
 		//	sortArray();
 		//	quickSort();
@@ -26,14 +26,30 @@ public class GlassD {
 		//	mergeSort(a, 0, a.length-1);
 		//	System.out.println(Arrays.toString(a));
 
-		System.out.println(longestConsecutive(new int[]{100,4,200,1,3,2}));
+	//	System.out.println(longestConsecutive(new int[]{100,4,200,1,3,2}));
 
 		//rajat 5 times array rotate
 
-	//	rotateArray(1);
-		rotateArrayMultipleTimes(3);
+		rotateArray(1);
+	//	rotateArrayMultipleTimes(3);
+		
+		String paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.";
+				String[] banned = {"hit"};
+		System.out.println(mostCommonWord(paragraph, banned));
 	}
 
+public static String mostCommonWord(String paragraph, String[] banned) {
+        
+	
+	//create a set with banned words, split the para, store in array, make a hashmap, place the word as
+	//lowercase and call a method to return the word without the punctuation
+	//sort the hashmap with value
+	
+
+	HashMap<String, Integer> map = new HashMap<String, Integer>();
+//	map.put
+	return paragraph;
+    }
 
 	private static void rotateArrayMultipleTimes(int times) {
 		int[] a = new int[]{1,2,3,4,5,6,7};
