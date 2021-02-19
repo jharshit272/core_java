@@ -13,20 +13,24 @@ public class OnsiteInterview {
 	public static void main(String[] args) {
 
 		//	anagram();
-		//	printFormatted("MI_is_one_of_the_best_place_to_work__It_is_nice__It_is_fun_");
-		//	printFormattedMultipleUnderscore("MI_is_one_of_the_best_place_to_work____It_is_nice__It_is_fun__I_am_working_there_");
+	//	printFormatted("MI_is_one_of_the_best_place_to_work__It_is_nice__It_is_fun_");
+		printFormattedMultipleUnderscore("MI_is_one_of_the_best_place_to_work____It_is_nice__It_is_fun__I_am_working_there_");
 		//	summingIntegersInString("a12cfgh345a1a");
-		findingPairThatSumToFive("a12cfg14ha1a3cd12qw4");
-	//	findingPairThatSumToFiveInArray();
+		//	findingPairThatSumToFive("a12cf56ggg1g14ha1sgs3a3cd12qw4gff5");
+
+		//	findingPairThatSumToFiveDifferent("a12cf56g14gg1g14ha1sgs3cd12qw4gff5");
+		//	findingPairThatSumToFiveInArray();
+		
+		
 	}
 
 	private static void findingPairThatSumToFiveInArray() {
-		
+
 		int a[] = {1,2,12,7,8,14,3,4,1,3};
-		
+
 		int gs=15;
 		System.out.println("-------------O(n^2)----------------");
-		
+
 		for (int i = 0; i < a.length; i++) {
 			for (int j = i+1; j < a.length; j++) {
 				if(gs-a[j]==a[i]) {
@@ -35,28 +39,61 @@ public class OnsiteInterview {
 				}
 			}
 		}
-		
+
 		System.out.println("-----------------------------");
-		
+
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		for (int i = 0; i < a.length; i++) {
-				if(map.containsKey(gs-a[i])) {
-					if(map.get(gs-a[i])>0) {
-						System.out.println(a[i]+" "+(gs-a[i]));	
-						map.put(gs-a[i], map.getOrDefault(gs-a[i], 1)-1);
-						map.put(gs-a[i], map.getOrDefault(gs-a[i], 1)-1);
-					}
-				}else  {
-					map.put(a[i], map.getOrDefault(a[i], 0)+1);
+			if(map.containsKey(gs-a[i])) {
+				if(map.get(gs-a[i])>0) {
+					System.out.println(a[i]+" "+(gs-a[i]));	
+					map.put(gs-a[i], map.getOrDefault(gs-a[i], 1)-1);
+					map.put(gs-a[i], map.getOrDefault(gs-a[i], 1)-1);
+				}
+			}else  {
+				map.put(a[i], map.getOrDefault(a[i], 0)+1);
 			}
 		}
-		
+
+	}
+
+
+
+	private static void findingPairThatSumToFiveDifferent(String s) {
+		//ip : "a12cf56ggg1g14ha1a3cd12qw4gff5"
+		//output = 2,3;1,4
+		//	ArrayList<Integer> map = new ArrayList<Integer>(); 
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(); 
+
+		StringBuffer n = new StringBuffer();
+		for (int i = 0; i < s.length(); i++) {
+
+			if(i < s.length() && Character.isDigit(s.charAt(i))){				
+				n.append(s.charAt(i));
+
+			}
+			else if(!n.toString().isEmpty()) {
+				map.put(Integer.valueOf(n.toString()), 
+						map.getOrDefault(Integer.valueOf(n.toString()), 0)+1);
+				n = new StringBuffer();
+			}
+		}
+		System.out.println("original:"+map);
+		for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+			if(map.containsKey(15 - entry.getKey())  && map.get(15 - entry.getKey())>0 && map.get(entry.getKey())>0) {
+				System.out.println(entry.getKey()+" "+(15 - entry.getKey()));
+				map.put(15 - entry.getKey(), map.getOrDefault(15 - entry.getKey(), 1)-1);
+				map.put(entry.getKey(), map.getOrDefault(entry.getKey(), 1)-1);
+			}
+		}
+		System.out.println(map);
+
 	}
 
 	private static void findingPairThatSumToFive(String s) {
-
+		//ip : "a12cf56ggg1g14ha1a3cd12qw4gff5"
 		//output = 2,3;1,4
-	//	ArrayList<Integer> map = new ArrayList<Integer>(); 
+		//	ArrayList<Integer> map = new ArrayList<Integer>(); 
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(); 
 
 		for (int i = 0; i < s.length(); i++) {
@@ -71,10 +108,12 @@ public class OnsiteInterview {
 						map.getOrDefault(Integer.valueOf(n.toString()), 0)+1);
 			}
 		}
-
+		System.out.println("original:"+map);
 		for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-			if(map.containsKey(15 - entry.getKey())) {
+			if(map.containsKey(15 - entry.getKey())  && map.get(15 - entry.getKey())>0 && map.get(entry.getKey())>0) {
 				System.out.println(entry.getKey()+" "+(15 - entry.getKey()));
+				map.put(15 - entry.getKey(), map.getOrDefault(15 - entry.getKey(), 1)-1);
+				map.put(entry.getKey(), map.getOrDefault(entry.getKey(), 1)-1);
 			}
 		}
 		System.out.println(map);
@@ -104,7 +143,7 @@ public class OnsiteInterview {
 	private static void printFormattedMultipleUnderscore(String s) {
 
 		//Replace single underscore with space and multiple with full stop
-
+System.out.println(s);
 		StringBuffer sb = new StringBuffer();
 		//	ArrayList<Character> list = new ArrayList<Character>();
 		for (int i = 0; i < s.length(); i++) {
@@ -112,12 +151,19 @@ public class OnsiteInterview {
 				sb.append(s.charAt(i));
 			}else if(i < s.length()-1 && !(s.charAt(i+1)=='_')) {
 				sb.append(' ');				
-			}else {
+			}
+			else {
 				while(i < s.length()-1 && (s.charAt(i+1)=='_')) {
 					i++;
 				}
 				sb.append('.');
 			}
+			
+			
+			
+			
+			
+			
 		}
 
 		System.out.println(sb);
@@ -128,7 +174,7 @@ public class OnsiteInterview {
 
 	private static void printFormatted(String s) {
 		//Replace single underscore with space and 2 with full stop
-
+		System.out.println(s);
 		char[] a = s.toCharArray(); 
 		ArrayList<Character> list = new ArrayList<Character>();
 		for (int i = 0; i < a.length; i++) {
@@ -141,8 +187,6 @@ public class OnsiteInterview {
 				list.add(' ');
 			}
 		}
-
-		//	System.out.println(list);
 
 		String output = list.stream().map(String::valueOf)
 				.collect(Collectors.joining());

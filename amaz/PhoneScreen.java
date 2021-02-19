@@ -20,8 +20,31 @@ public class PhoneScreen {
 		//	continuousSumOfNumbersWithoutString();
 		//	locationOfKeyWord("car");
 
-		logsAndError();	
-		posOfSecondLargest();
+		//	logsAndError();	
+		//	posOfSecondLargest();
+
+		encoding("cddaffabc");
+	}
+
+	private static void encoding(String s) {
+		//input "aaabbccccddaf", op = "3a2b3c2d1a1f"
+
+
+		StringBuffer sb = new StringBuffer();
+		int tempCount = 1;
+		for (int i = 0; i < s.length()-1; i++) {
+			if(s.charAt(i)==s.charAt(i+1)) {
+				tempCount++;
+			}else {
+				sb.append(tempCount).append(s.charAt(i));
+				tempCount = 1;
+			}
+		}
+
+		sb.append(tempCount).append(s.charAt(s.length()-1));
+
+		System.out.println(sb);
+
 	}
 
 	//A function to return the position of the second largest element from an array 

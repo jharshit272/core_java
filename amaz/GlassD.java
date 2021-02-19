@@ -1,8 +1,13 @@
 package amaz;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 public class GlassD {
@@ -15,8 +20,8 @@ public class GlassD {
 		//	pick2LetterUniqueAlpha();
 		//	System.out.println(firstOccurrenceNonRepeatingCharacterInString());
 		//	reverseTheArrayOfChar();  
-	//	notSortedThirdLargestValue();
-	//	secondLargestValue();
+		//	notSortedThirdLargestValue();
+			secondLargestValue();
 		//mergeSortedArray();
 		//	sortArray();
 		//	quickSort();
@@ -26,30 +31,112 @@ public class GlassD {
 		//	mergeSort(a, 0, a.length-1);
 		//	System.out.println(Arrays.toString(a));
 
-	//	System.out.println(longestConsecutive(new int[]{100,4,200,1,3,2}));
+		//	System.out.println(longestConsecutive(new int[]{100,4,200,1,3,2}));
 
 		//rajat 5 times array rotate
 
-		rotateArray(1);
-	//	rotateArrayMultipleTimes(3);
+		//	rotateArray(1);
+			rotateArrayMultipleTimes(3);
+
+		//	String paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.";
+		//			String[] banned = {"hit"};
+		//	System.out.println(mostCommonWord(paragraph, banned));
+		System.out.println(maxSubArray( new int[]{-2,1,-3,4,-1,2,1,-5,4})) ;	
+	//	System.out.println(maxSubArray( new int[]{-2,1,-3,4,-1,2,1,-5,4})) ;	
+
+	//	maxOccuringString();
 		
-		String paragraph = "Bob hit a ball, the hit BALL flew far after it was hit.";
-				String[] banned = {"hit"};
-		System.out.println(mostCommonWord(paragraph, banned));
+		System.out.println(maxProfit(new int[]{7,1,5,3,6,4}));
+		System.out.println(maxProfit1(new int[]{7,1,5,3,6,4}));
+	}
+	
+	
+	private static int maxProfit1(int[] p) {
+		
+		int min = Integer.MAX_VALUE;
+		int max = 0;
+		for (int i = 0; i < p.length; i++) {
+			if(p[i] < min) {
+				min = p[i];
+			}else {
+				max = Math.max(max, p[i]-min);
+			}
+		}
+		return max;
+		
+		
 	}
 
-public static String mostCommonWord(String paragraph, String[] banned) {
-        
-	
-	//create a set with banned words, split the para, store in array, make a hashmap, place the word as
-	//lowercase and call a method to return the word without the punctuation
-	//sort the hashmap with value
-	
 
-	HashMap<String, Integer> map = new HashMap<String, Integer>();
-//	map.put
-	return paragraph;
+	public static int maxProfit(int[] prices) {
+        int max = 0;
+        for(int i=0; i<prices.length-1; i++){
+            for(int j=i+1; j<prices.length; j++){
+                if(prices[j]>prices[i]){
+                    max = Math.max(max, prices[j]-prices[i]);       
+                }
+            }       
+        }      
+        return max;
     }
+
+	private static void maxOccuringString() {
+		String s = "test";
+		
+		Object map = new HashMap<Character, Integer>();
+		
+		for (int i = 0; i < s.length(); i++) {
+	//		((HashMap<Character, Integer>) map).put(s.charAt(i), ((HashMap<Character, Integer>) map).getOrDefault(s.charAt(i), 0)+1);
+		}
+		
+	/*	Collections.sort(map, new Comparator<Map.Entry<Character, Integer>>() {
+			
+
+			@Override
+			public int compare(Entry<Character, Integer> o1, Entry<Character, Integer> o2) {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+		});*/
+		
+	}
+
+	//53. Maximum Subarray O(N~2)
+/*	public static int maxSubArray(int[] a) {
+		int maxSum = Integer.MIN_VALUE;
+		for (int i = 0; i < a.length; i++) {
+			int tempSum = 0;
+			for (int j = i; j < a.length; j++) {
+				tempSum = tempSum+ a[j];
+				maxSum = Math.max(maxSum, tempSum);
+			}
+		}
+		return maxSum;
+	}*/
+	
+	//53. Maximum Subarray O(N~2)
+	public static int maxSubArray(int[] a) {
+		int maxSum = a[0];
+		int cur_sum = maxSum;
+		for (int i = 1; i < a.length; i++) {
+			cur_sum = Math.max(cur_sum+a[i], a[i]);
+			maxSum = Math.max(cur_sum, maxSum);
+		}		
+		return maxSum;
+	}
+
+	public static String mostCommonWord(String paragraph, String[] banned) {
+
+
+		//create a set with banned words, split the para, store in array, make a hashmap, place the word as
+		//lowercase and call a method to return the word without the punctuation
+		//sort the hashmap with value
+
+
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		//	map.put
+		return paragraph;
+	}
 
 	private static void rotateArrayMultipleTimes(int times) {
 		int[] a = new int[]{1,2,3,4,5,6,7};
@@ -61,12 +148,12 @@ public static String mostCommonWord(String paragraph, String[] banned) {
 		for (int i = a.length-times, j=0; i <= a.length-1; i++, j++) {
 			output[j]=a[i];
 		}
-		
+
 		for (int i = 0, j=times; j <= a.length-1; i++, j++) {
 			output[j]=a[i];
 		}
 		System.out.println(Arrays.toString(output));
-		
+
 	}
 
 
@@ -80,9 +167,9 @@ public static String mostCommonWord(String paragraph, String[] banned) {
 			a[i]=a[i-1];
 		}
 		a[0]=last;
-		
+
 		System.out.println(Arrays.toString(a));
-		
+
 		a = new int[]{1,2,3,4,5,6,7};
 
 		//rotate left side
@@ -92,7 +179,7 @@ public static String mostCommonWord(String paragraph, String[] banned) {
 			a[i-1]=a[i];
 		}
 		a[a.length-1]=first;
-		
+
 		System.out.println(Arrays.toString(a));
 	}
 

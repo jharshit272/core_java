@@ -10,7 +10,7 @@
 class BaseClass{
 	@BeforeSuite
 	public void setup() {
-		RestAssured.baseURL = "https:/createorder/v1";
+		RestAssured.baseURL = "https://createorder/v1";
 		RestAssured.port = 8080;
 		//DB connection
 		if(conn == null) {
